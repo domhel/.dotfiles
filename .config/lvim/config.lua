@@ -175,6 +175,9 @@ lvim.plugins = {
     'akinsho/flutter-tools.nvim',
     requires = 'nvim-lua/plenary.nvim'
   },
+  {
+    "tpope/vim-surround",
+  }
 }
 
 require("flutter-tools").setup {} -- use defaults
