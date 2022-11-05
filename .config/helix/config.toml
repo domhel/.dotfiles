@@ -1,0 +1,5 @@
+theme = "tokyonight-storm"
+
+[editor]
+line-number = "relative"
+completion-trigger-len = 1
