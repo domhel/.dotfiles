@@ -14,6 +14,7 @@ export PATH=$PATH:$HOME/.local/bin
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="cloud"
 alias vim=lvim
+alias c="cd $HOME/Documents/Code"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
