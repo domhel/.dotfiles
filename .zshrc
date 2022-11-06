@@ -15,6 +15,7 @@ export PATH=$PATH:$HOME/.local/bin
 ZSH_THEME="cloud"
 alias vim=lvim
 alias c="cd $HOME/Documents/Code"
+alias lg=lazygit
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

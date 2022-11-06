@@ -12,7 +12,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "carbonfox"
 vim.wo.relativenumber = true
 vim.wo.number = true
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -67,6 +67,7 @@ lvim.builtin.which_key.mappings["g"] = {
   name = "+Git and GoTo",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
   d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+  k = { "<cmd>lvim.lsp.buf.hover()<cr>", "Definitions" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -183,7 +184,10 @@ lvim.plugins = {
   },
   {
     "tpope/vim-surround",
-  }
+  },
+  {
+    "EdenEast/nightfox.nvim",
+  },
 }
 
 require("flutter-tools").setup {} -- use defaults
