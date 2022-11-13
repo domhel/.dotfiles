@@ -73,6 +73,8 @@ lvim.keys.normal_mode["K"] = "<cmd>lua vim.lsp.buf.hover()<cr>"
 lvim.keys.normal_mode["gr"] = "<cmd>TroubleToggle lsp_references<cr>"
 lvim.keys.normal_mode["gd"] = "<cmd>TroubleToggle lsp_definitions<cr>"
 lvim.keys.normal_mode["gi"] = "<cmd>TroubleToggle lsp_implementations<cr>"
+-- doesnt work yet
+-- lvim.keys.insert_mode["<C-Space>"] = "<cmd>lua cmp.mapping.complete()<cr>"
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
