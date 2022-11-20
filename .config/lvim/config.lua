@@ -11,7 +11,7 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 lvim.colorscheme = "carbonfox"
 vim.wo.relativenumber = true
 vim.wo.number = true

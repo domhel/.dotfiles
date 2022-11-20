@@ -1,0 +1,5 @@
+!regolith.look.path: /usr/share/regolith-look/ayu-mirage
+regolith.look.path: /usr/share/regolith-look/lascaille
+i3-wm.mod: Mod1
+i3-wm.alt: Mod4
+
