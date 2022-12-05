@@ -11,10 +11,11 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = false
+lvim.format_on_save = true
 lvim.colorscheme = "carbonfox"
 vim.wo.relativenumber = true
 vim.wo.number = true
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -73,6 +74,9 @@ lvim.keys.normal_mode["K"] = "<cmd>lua vim.lsp.buf.hover()<cr>"
 lvim.keys.normal_mode["gr"] = "<cmd>TroubleToggle lsp_references<cr>"
 lvim.keys.normal_mode["gd"] = "<cmd>TroubleToggle lsp_definitions<cr>"
 lvim.keys.normal_mode["gi"] = "<cmd>TroubleToggle lsp_implementations<cr>"
+-- center after Ctrl+d and Ctrl+u
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 -- doesnt work yet
 -- lvim.keys.insert_mode["<C-Space>"] = "<cmd>lua cmp.mapping.complete()<cr>"
 
@@ -211,3 +215,8 @@ vim.api.nvim_create_autocmd("FileType", {
     require("nvim-treesitter.highlight").attach(0, "bash")
   end,
 })
+
+
+lvim.builtin.indentlines.options.show_first_indent_level = false
+lvim.builtin.indentlines.options.use_treesitter = true
+lvim.builtin.indentlines.active = false
