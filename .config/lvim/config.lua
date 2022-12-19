@@ -198,6 +198,9 @@ lvim.plugins = {
   {
     "EdenEast/nightfox.nvim",
   },
+  {
+    "github/copilot.vim",
+  },
 }
 
 require("flutter-tools").setup {} -- use defaults
@@ -220,3 +223,9 @@ vim.api.nvim_create_autocmd("FileType", {
 lvim.builtin.indentlines.options.show_first_indent_level = false
 lvim.builtin.indentlines.options.use_treesitter = true
 lvim.builtin.indentlines.active = false
+
+-- vim.g.copilot_no_tab_map = true
+-- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("")', { expr = true, silent = true })
