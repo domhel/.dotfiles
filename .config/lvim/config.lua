@@ -23,8 +23,8 @@ vim.wo.number = true
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+-- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+-- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -62,6 +62,7 @@ lvim.builtin.which_key.mappings["t"] = {
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+  h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon" },
 }
 -- space+g -> goto (overwrites some git commands like diff)
 lvim.builtin.which_key.mappings["g"] = {
@@ -201,6 +202,10 @@ lvim.plugins = {
   {
     "github/copilot.vim",
   },
+  {
+    "ThePrimeagen/harpoon",
+    requires = "nvim-lua/plenary.nvim",
+  },
 }
 
 require("flutter-tools").setup {} -- use defaults
@@ -229,3 +234,16 @@ lvim.builtin.indentlines.active = false
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("")', { expr = true, silent = true })
+
+
+-- harpoon keybindings
+-- vim.api.nvim_set_keymap("n", "<leader>ha", "", { noremap = true, silent = true })
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<C-b>"] = ":lua require('harpoon.ui').nav_file(1)<CR>"
+lvim.keys.normal_mode["<C-n>"] = ":lua require('harpoon.ui').nav_file(2)<CR>"
+lvim.keys.normal_mode["<C-m>"] = ":lua require('harpoon.ui').nav_file(3)<CR>"
+lvim.builtin.which_key.mappings["n"] = {
+  name = "+Harpoon",
+  h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Toggle Quick Menu" },
+  n = { ":lua require('harpoon.mark').add_file()<CR>", "Add file" },
+}
