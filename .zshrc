@@ -109,3 +109,5 @@ alias lg=lazygit
 alias vim=nvim
 alias cat=bat
 alias grep=rg
+export PATH=$PATH:$HOME/bin/openjdk/openlogic-openjdk-11.0.18+10-linux-x64/bin
+alias dotfiles="cd $HOME/Documents/Code/.dotfiles && lg"
