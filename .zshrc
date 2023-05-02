@@ -102,9 +102,13 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/Documents/tools
+export PROJECTS_HOME=$HOME/projects
+alias proj="cd $PROJECTS_HOME"
+export BLUERANGE_HOME=$HOME/bluerange
 alias c="cd $HOME/Documents/Code"
-alias mesh="cd $HOME/Documents/Code/fruitymesh"
-alias iot="cd $HOME/Documents/Code/iot-fruitydeploy"
+alias mesh="cd $BLUERANGE_HOME/fruitymesh"
+alias iot="cd $BLUERANGE_HOME/iot-fruitydeploy"
+alias br="cd $BLUERANGE_HOME"
 alias lg=lazygit
 alias vim=nvim
 alias cat=bat
