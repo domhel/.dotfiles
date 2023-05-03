@@ -39,3 +39,7 @@ cd $HOME/bin
 tar -xf lazydocker.tar.gz
 rm lazydocker.tar.gz README.md LICENSE
 
+# Logseq
+wget -O $HOME/bin/logseq https://github.com/logseq/logseq/releases/download/0.9.4/Logseq-linux-x64-0.9.4.AppImage
+chmod +x $HOME/bin/logseq
+
