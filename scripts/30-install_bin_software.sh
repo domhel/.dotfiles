@@ -19,3 +19,11 @@ cd $HOME/bin
 tar -xf SpeedCrunch.tar.bz2
 rm SpeedCrunch.tar.bz2
 
+# Insomnia HTTP client
+wget -O $HOME/bin/insomnia https://github.com/Kong/insomnia/releases/download/core%402023.2.0/Insomnia.Core-2023.2.0.AppImage
+chmod +x $HOME/bin/insomnia
+
+# Altair GraphQL client
+wget -O $HOME/bin/altair https://github.com/altair-graphql/altair/releases/download/v5.0.24/altair_5.0.24_x86_64_linux.AppImage
+chmod +x $HOME/bin/altair
+
