@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# java
 export OUTPUT_FOLDER=$HOME/bin/openjdk
 export OUTPUT_FILE=openjdk-11.tar.gz
 export DOWNLOADED_FILE=openlogic-openjdk-11.0.18+10-linux-x64.tar.gz
