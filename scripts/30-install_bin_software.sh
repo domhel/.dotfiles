@@ -8,3 +8,7 @@ wget -O $OUTPUT_FOLDER/$OUTPUT_FILE https://builds.openlogic.com/downloadJDK/ope
 cd $OUTPUT_FOLDER
 tar -xf $OUTPUT_FILE
 
+# balena etcher for flashing usb sticks
+wget -O $HOME/bin/balenaEtcher https://github.com/balena-io/etcher/releases/download/v1.18.4/balenaEtcher-1.18.4-x64.AppImage
+chmod +x $HOME/bin/balenaEtcher
+
