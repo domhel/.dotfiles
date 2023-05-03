@@ -44,10 +44,9 @@ wget -O $HOME/bin/logseq https://github.com/logseq/logseq/releases/download/0.9.
 chmod +x $HOME/bin/logseq
 
 # VSCode
-wget -O $HOME/bin/vscode.tar.gz https://code.visualstudio.com/sha/download?build=stable&os=linux-x64
+wget -O $HOME/bin/vscode.tar.gz "https://code.visualstudio.com/sha/download?build=stable&os=linux-x64"
 cd $HOME/bin
-tar -xf vscode.tar.gz
-rm vscode.tar.gz
+tar -xf vscode.tar.gz && rm vscode.tar.gz
 
 # Spyglass (personal search engine)
 wget -O $HOME/bin/spyglass https://github.com/spyglass-search/spyglass/releases/download/v2023.4.1/spyglass_23.4.1_amd64.AppImage
