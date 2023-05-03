@@ -43,3 +43,9 @@ rm lazydocker.tar.gz README.md LICENSE
 wget -O $HOME/bin/logseq https://github.com/logseq/logseq/releases/download/0.9.4/Logseq-linux-x64-0.9.4.AppImage
 chmod +x $HOME/bin/logseq
 
+# VSCode
+wget -O $HOME/bin/vscode.tar.gz https://code.visualstudio.com/sha/download?build=stable&os=linux-x64
+cd $HOME/bin
+tar -xf vscode.tar.gz
+rm vscode.tar.gz
+
