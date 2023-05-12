@@ -2,4 +2,8 @@
 # Rust installation
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-cargo install ripgrep bat tmux-sessionizer
+# ripgrep: multithreaded grep
+# bat: nicer cat
+# tmux-sessionizer: hop through git workspaces
+# du-dust: nicer du
+cargo install ripgrep bat tmux-sessionizer du-dust
