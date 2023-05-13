@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# Source this file
+
 # Rust installation
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
