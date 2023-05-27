@@ -117,3 +117,8 @@ export PATH=$PATH:$HOME/bin/openjdk/openlogic-openjdk-11.0.18+10-linux-x64/bin
 export PATH=$PATH:$HOME/.cargo/bin
 alias dotfiles="cd $HOME/Documents/Code/.dotfiles && lg"
 export PATH=$PATH:$HOME/bin/VSCode-linux-x64/bin
+
+# run tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
