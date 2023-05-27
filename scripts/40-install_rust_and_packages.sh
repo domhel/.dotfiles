@@ -7,4 +7,5 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # bat: nicer cat
 # tmux-sessionizer: hop through git workspaces
 # du-dust: nicer du
-cargo install ripgrep bat tmux-sessionizer du-dust
+# alacritty: terminal
+cargo install ripgrep bat tmux-sessionizer du-dust alacritty
