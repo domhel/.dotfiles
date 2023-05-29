@@ -118,6 +118,8 @@ export PATH=$PATH:$HOME/.cargo/bin
 alias dotfiles="cd $HOME/setup/dotfiles && lg"
 export PATH=$PATH:$HOME/bin/VSCode-linux-x64/bin
 export PATH=$PATH:$HOME/bin/gcc-arm-none-eabi-4_9-2015q3/bin
+# python binary install dir
+export PATH=$PATH:$HOME/.local/bin
 
 # run tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
