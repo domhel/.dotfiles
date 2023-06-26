@@ -52,3 +52,10 @@ tar -xf vscode.tar.gz && rm vscode.tar.gz
 wget -O $HOME/bin/spyglass https://github.com/spyglass-search/spyglass/releases/download/v2023.4.1/spyglass_23.4.1_amd64.AppImage
 chmod +x $HOME/bin/spyglass
 
+
+# Spyglass (personal search engine)
+wget -O $HOME/bin/jetbrains-toolbox-1.28.1.15219.tar.gz https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.tar.gz
+cd $HOME/bin
+tar -xf jetbrains-toolbox-1.28.1.15219.tar.gz
+rm jetbrains-toolbox-1.28.1.15219.tar.gz
+
