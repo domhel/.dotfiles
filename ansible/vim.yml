@@ -1,0 +1,10 @@
+---
+- name: Update Vim
+  hosts: all
+  become: true
+  tasks:
+    - name: Update Vim to the latest version
+      package:
+        name: vim
+        state: latest
+

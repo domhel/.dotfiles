@@ -1,0 +1,6 @@
+[servers]
+vps_strato ansible_host=h3005413.stratoserver.net
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
