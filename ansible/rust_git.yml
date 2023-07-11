@@ -1,0 +1,40 @@
+---
+- name: Install Rust and Git on Debian
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - build-essential
+        - curl
+        - git
+
+    - name: Download and install Rust
+      shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      args:
+        creates: /home/{{ ansible_user }}/.cargo/bin/rustup
+
+    - name: Add Rust to PATH
+      lineinfile:
+        dest: /home/{{ ansible_user }}/.bashrc
+        line: 'export PATH="$HOME/.cargo/bin:$PATH"'
+        create: yes
+        insertafter: EOF
+
+    - name: Source .bashrc to update environment
+      shell: source /home/{{ ansible_user }}/.bashrc
+
+    - name: Verify Rust installation
+      command: rustc --version
+
+    - name: Verify Git installation
+      command: git --version
+
