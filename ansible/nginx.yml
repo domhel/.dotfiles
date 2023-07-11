@@ -1,0 +1,66 @@
+---
+- name: Install NGINX with HTTPS and reverse proxy
+  hosts: all
+  become: true
+  tasks:
+  - name: Update apt package cache
+    apt:
+      update_cache: yes
+
+  - name: Install NGINX
+    apt:
+      name: nginx
+      state: latest
+
+  - name: Ensure Python3 is installed
+    apt:
+      name: python3 
+      state: latest
+
+  - name: Install Certbot
+    apt:
+      name: certbot
+      state: latest
+
+  - name: Install Certbot Nginix Plugin
+    apt:
+      name: python3-certbot-nginx
+      state: latest
+
+  - name: Configure NGINX
+    template:
+      src: nginx.conf.j2
+      dest: /etc/nginx/sites-available/default
+    notify:
+      - Restart NGINX Service
+
+  - name: Obtain Let's Encrypt SSL certificate
+    command: certbot certonly --nginx --non-interactive --agree-tos --email dominik.helfenstein@gmx.de -d api.csgo-inventory-tracker.com
+
+  - name: Enable NGINX default site
+    file:
+      src: /etc/nginx/sites-available/default
+      dest: /etc/nginx/sites-enabled/default
+      state: link
+
+  - name: Ensure ufw is installed
+    apt:
+      name: ufw
+      state: latest
+
+  - name: Open backend port
+    ufw:
+      rule: allow
+      port: 8081
+      state: enabled
+
+  - name: Enable UFW
+    ufw:
+      state: enabled
+
+  handlers:
+  - name: Restart NGINX Service
+    service:
+      name: nginx
+      state: restarted
+
