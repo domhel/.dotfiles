@@ -1,0 +1,12 @@
+# Flutter
+flutter --disable-telemetry
+sudo softwareupdate --install-rosetta --agree-to-license
+
+# Rust (diesel and postgres)
+brew link --force libpq
+echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> ~/.zshrc
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+PQ_LIB_DIR="$(brew --prefix libpq)/lib"
+cargo install diesel_cli --no-default-features --features postgres
+
+
