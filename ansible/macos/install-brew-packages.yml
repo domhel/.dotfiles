@@ -39,4 +39,6 @@
         - podman-compose
         - libpq
         - lazygit
+        - logseq
+        - aldente
 
