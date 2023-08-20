@@ -1,6 +1,6 @@
 ---
 - name: Configure Docker
-  hosts: all
+  hosts: servers
   become: true
   tasks:
     - name: Install Docker dependencies
@@ -36,7 +36,7 @@
 
     - name: Add user to Docker group
       user:
-        name: csgotracker
+        name: "{{ ansible_user }}"
         groups: docker
         append: yes
 
@@ -47,7 +47,7 @@
 
     - name: Add user to docker group (to use docker as non-root)
       user: 
-        name: your_username 
+        name: "{{ ansible_user }}" 
         append: yes 
         groups: docker
 
@@ -55,4 +55,3 @@
       systemd:
         state: restarted
         name: docker
-

@@ -1,8 +1,10 @@
 ---
 - name: Update Vim
-  hosts: all
+  hosts: servers
   become: true
   tasks:
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes
     - name: Update Vim to the latest version
       package:
         name: vim

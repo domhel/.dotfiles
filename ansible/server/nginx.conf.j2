@@ -1,12 +1,12 @@
 server {
-    listen 8081 ssl;
-    server_name api.csgo-inventory-tracker.com;
+    listen 443 ssl;
+    server_name api.cs-tracker.com;
 
-    ssl_certificate /etc/letsencrypt/live/api.csgo-inventory-tracker.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.csgo-inventory-tracker.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/api.cs-tracker.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.cs-tracker.com/privkey.pem;
 
     location / {
-        proxy_pass http://localhost:50000;
+        proxy_pass http://localhost:5432;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

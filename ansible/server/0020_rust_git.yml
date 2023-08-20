@@ -1,12 +1,12 @@
 ---
 - name: Install Rust and Git on Debian
-  hosts: all
-  become: yes
+  hosts: servers
 
   tasks:
     - name: Update apt cache
       apt:
         update_cache: yes
+      become: yes
 
     - name: Install dependencies
       apt:

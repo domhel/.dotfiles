@@ -1,6 +1,6 @@
 ---
 - name: Install NGINX with HTTPS and reverse proxy
-  hosts: all
+  hosts: servers
   become: true
   tasks:
   - name: Update apt package cache
@@ -35,32 +35,13 @@
       - Restart NGINX Service
 
   - name: Obtain Let's Encrypt SSL certificate
-    command: certbot certonly --nginx --non-interactive --agree-tos --email dominik.helfenstein@gmx.de -d api.csgo-inventory-tracker.com
+    command: certbot certonly --nginx --non-interactive --agree-tos --email dominik.helfenstein@gmx.de -d api.cs-tracker.com
 
   - name: Enable NGINX default site
     file:
       src: /etc/nginx/sites-available/default
       dest: /etc/nginx/sites-enabled/default
       state: link
-
-  - name: Ensure ufw is installed
-    apt:
-      name: ufw
-      state: latest
-
-  - name: Open backend port
-    ufw:
-      rule: allow
-      port: "{{ item }}"
-      state: enabled
-      loop:
-        22
-        8081
-        8443
-
-  - name: Enable UFW
-    ufw:
-      state: enabled
 
   handlers:
   - name: Restart NGINX Service

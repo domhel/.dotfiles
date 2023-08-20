@@ -1,0 +1,38 @@
+---
+- name: Create user 'dominik' with sudo rights on Debian
+  hosts: servers
+  remote_user: root
+  become: yes
+  tasks:
+    - name: Initial apt update and upgrade
+      ansible.builtin.shell: apt update && apt upgrade -y
+
+    - name: Ensure user exists
+      user:
+        name: "{{ new_username }}"
+        state: present
+        shell: /bin/bash
+        password: "{{ new_user_password }}"
+        create_home: yes
+
+    - name: Ensure sudo package is installed
+      apt:
+        name: sudo
+        state: present
+
+    - name: Add 'dominik' to sudoers
+      lineinfile:
+        path: /etc/sudoers
+        line: 'dominik ALL=(ALL:ALL) NOPASSWD:ALL'
+        state: present
+        validate: 'visudo -cf %s'
+
+  vars_prompt:
+    - name: "new_username"
+      prompt: "Enter username"
+      private: no
+    - name: "new_user_password"
+      prompt: "Enter password for user"
+      private: yes
+      confirm: yes
+

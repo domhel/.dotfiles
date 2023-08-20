@@ -1,6 +1,9 @@
 [servers]
-vps_strato ansible_host=h3005413.stratoserver.net
+vps_strato ansible_host=h3005413.stratoserver.net ansible_user=dominik
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
+
+[defaults]
+host_key_checking=False
 
