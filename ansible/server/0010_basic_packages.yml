@@ -1,0 +1,60 @@
+---
+- name: Install basic packages
+  hosts: servers
+  become: true
+  tasks:
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes
+    - name: Install packages with the latest versions
+      apt:
+        package:
+          - vim
+          - tmux
+          - screen
+        state: latest
+
+- name: Configure lazygit
+  hosts: servers
+  become: false
+  tasks:
+    - name: Determine download URL
+      shell: |
+        curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
+        | grep "browser_download_url.*lazygit_[^ ]*Linux_32-bit.tar.gz" \
+        | cut -d : -f 2,3 \
+        | tr -d \"
+      register: download_url
+
+    - name: Create $HOME/bin directory if not present
+      file:
+        path: "{{ ansible_env.HOME }}/bin"
+        state: directory
+        mode: '0755'
+
+    - name: Download lazygit tar.gz
+      get_url:
+        url: "{{ download_url.stdout }}"
+        dest: "{{ ansible_env.HOME }}/bin/lazygit.tar.gz"
+
+    - name: Extract lazygit to $HOME/bin
+      unarchive:
+        src: "{{ ansible_env.HOME }}/bin/lazygit.tar.gz"
+        dest: "{{ ansible_env.HOME }}/bin/"
+        remote_src: true
+
+    - name: Remove downloaded tar.gz
+      file:
+        path: "{{ ansible_env.HOME }}/bin/lazygit.tar.gz"
+        state: absent
+
+    - name: Ensure alias lg=lazygit is in $HOME/.bashrc
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        line: 'alias lg=lazygit'
+        create: true
+
+    - name: Ensure $HOME/bin is in PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        line: 'export PATH="$HOME/bin:$PATH"'
+        create: true
