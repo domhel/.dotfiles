@@ -9,6 +9,7 @@
       become: yes
 
     - name: Install dependencies
+      become: yes
       apt:
         name: "{{ item }}"
         state: present

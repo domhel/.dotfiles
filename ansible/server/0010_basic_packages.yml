@@ -11,6 +11,8 @@
           - vim
           - tmux
           - screen
+          - htop
+          - jq
         state: latest
 
 - name: Configure lazygit

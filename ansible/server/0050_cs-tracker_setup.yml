@@ -2,7 +2,8 @@
 - name: Clone git repos for
   hosts: servers
   vars:
-    projects_dir: "~/projects"
+    dev_dir: "~/dev"
+    prod_dir: "~/prod"
   tasks:
   - name: Check that required packages are present
     command: "which {{ item }}"
@@ -16,18 +17,32 @@
     failed_when: packages_installed.rc != 0
   - name: Ensure projects dir exists
     file:
-      path: "{{ projects_dir }}"
+      path: "{{ item }}"
       state: directory
-  # - name: Ensure github repos are up to date
-  #   git:
-  #     repo: "git@github.com:dippa-1/{{ item }}.git"
-  #     dest: "{{ projects_dir }}/{{ item }}"
-  #     accept_hostkey: true
-  #     clone: true
-  #     update: true
-  #   loop:
-  #     - cs-tracker-api
-  #     - csgo-inventory-tracker-backend
+    loop:
+    - "{{ dev_dir }}"
+    - "{{ prod_dir }}"
+  - name: Ensure dev github repos are up to date
+    git:
+      repo: "git@github.com:dippa-1/{{ item }}.git"
+      dest: "{{ dev_dir }}/{{ item }}"
+      accept_hostkey: true
+      clone: true
+      update: true
+    loop:
+      - cs-tracker-api
+      - steam-inventory-plus-web
+      - csgo-inventory-tracker-backend
+  - name: Ensure prod github repos are up to date
+    git:
+      repo: "git@github.com:dippa-1/{{ item }}.git"
+      dest: "{{ prod_dir }}/{{ item }}"
+      accept_hostkey: true
+      clone: true
+      update: true
+    loop:
+      - cs-tracker-api
+      - steam-inventory-plus-web
   - name: Ensure Rust dependencies are up to date
     become: true
     apt:
@@ -39,14 +54,14 @@
   - name: Build api backend
     command:
       cmd: "bash -lc 'cargo build'"
-      chdir: "{{ projects_dir }}/{{ item }}"
+      chdir: "{{ prod_dir }}/{{ item }}"
     loop:
     - cs-tracker-api
     tags: cargo
   - name: Ensure postgres docker containers are running
     command:
       cmd: docker compose up -d
-      chdir: "{{ projects_dir }}/cs-tracker-api"
+      chdir: "{{ prod_dir }}/cs-tracker-api"
 
   - name: Ensure Python and pip are installed
     become: true
@@ -59,7 +74,7 @@
   # - name: Run dgraph to csv shell migration scripts
   #   command: 
   #     cmd: "bash {{ item }}"
-  #     chdir: "{{ projects_dir }}/csgo-inventory-tracker-backend/migration"
+  #     chdir: "{{ dev_dir }}/csgo-inventory-tracker-backend/migration"
   #   with_items:
   #     - 0001_get_all_inventory_history_points.sh
   #     - 0003_get_all_skin_history_points.sh
@@ -69,7 +84,7 @@
   # - name: Run dgraph to csv python migration scripts
   #   command: 
   #     cmd: "python3 {{ item }}"
-  #     chdir: "{{ projects_dir }}/csgo-inventory-tracker-backend/migration"
+  #     chdir: "{{ dev_dir }}/csgo-inventory-tracker-backend/migration"
   #   with_items:
   #     - 0002_convert_inventory_history_points_to_csv.py
   #     - 0004_convert_skin_history_points_to_csv.py
@@ -78,7 +93,7 @@
   # - name: Copy CSV files into the Postgres container
   #   command:
   #     cmd: "docker cp {{ item.src }} postgres_container:{{ item.dest }}"
-  #     chdir: "{{ projects_dir }}/csgo-inventory-tracker-backend/migration"
+  #     chdir: "{{ dev_dir }}/csgo-inventory-tracker-backend/migration"
   #   with_items:
   #     - src: "0002_output.csv"
   #       dest: "/inventory_history.csv"
@@ -92,4 +107,4 @@
   - name: Install diesel and run migration
     command:
       cmd: bash -lc 'make setup'
-      chdir: "{{ projects_dir }}/cs-tracker-api"
+      chdir: "{{ prod_dir }}/cs-tracker-api"

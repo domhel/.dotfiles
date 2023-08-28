@@ -1,0 +1,20 @@
+---
+- name: Configure cron
+  hosts: servers
+  vars:
+    dev_dir: "~/dev"
+    prod_dir: "~/prod"
+  tasks:
+  - name: "Ensure automatic apt update is configured"
+    cron:
+      name: "Keep system up to date"
+      minute: "0"
+      hour: "3"
+      job: "sudo apt update 2>&1 && sudo apt upgrade -y 2>&1"
+  - name: "Ensure inventory tracker job is configured to run"
+    cron:
+      name: "cs-tracker job"
+      minute: "0"
+      hour: "22"
+      job: "/home/dominik/prod/cs-tracker-api/job.sh -x 2>&1"
+

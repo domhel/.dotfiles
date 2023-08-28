@@ -1,0 +1,15 @@
+---
+- name: Generate SSH key
+  hosts: servers
+  tasks:
+  - name: Ensure folder exists
+    file:
+      path: "~/.ssh"
+      state: directory
+      mode: '0755'
+  - name: Generate an OpenSSH ed25519 keypair
+    community.crypto.openssh_keypair:
+      path: "~/.ssh/id_ed25519"
+      type: ed25519
+      comment: "{{ ansible_user }}@server"
+
