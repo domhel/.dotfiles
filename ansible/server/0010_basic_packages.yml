@@ -13,6 +13,7 @@
           - screen
           - htop
           - jq
+          - rsync
         state: latest
 
 - name: Configure lazygit
