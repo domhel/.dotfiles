@@ -45,3 +45,4 @@
         - ansible-lint
         - spotify
         - jq
+        - nvm
