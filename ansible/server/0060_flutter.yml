@@ -10,4 +10,14 @@
         package:
           - chromium
         state: latest
+    - name: Ensure $HOME/flutter/bin is in PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        line: 'export PATH="$HOME/flutter/bin:$PATH"'
+        create: true
+    - name: Ensure chromium is in PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        line: 'export CHROME_EXECUTABLE=chromium'
+        create: true
 
