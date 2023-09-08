@@ -1,0 +1,13 @@
+---
+- name: Install basic packages
+  hosts: servers
+  become: true
+  tasks:
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes
+    - name: Install packages with the latest versions
+      apt:
+        package:
+          - chromium
+        state: latest
+
