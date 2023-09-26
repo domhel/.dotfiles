@@ -9,4 +9,6 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 PQ_LIB_DIR="$(brew --prefix libpq)/lib"
 cargo install diesel_cli --no-default-features --features postgres
 
+# Enable repeat keys for vscode vim
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
