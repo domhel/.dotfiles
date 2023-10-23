@@ -9,12 +9,12 @@
     cron:
       name: "Keep system up to date"
       minute: "0"
-      hour: "3"
+      hour: "5"
       job: "sudo apt update 2>&1 && sudo apt upgrade -y 2>&1"
   - name: "Ensure inventory tracker job is configured to run"
     cron:
       name: "cs-tracker job"
       minute: "0"
-      hour: "22"
+      hour: "2"
       job: "/home/dominik/prod/cs-tracker-api/job.sh -x 2>&1"
 

@@ -1,8 +1,9 @@
 [old_servers]
 vps_strato ansible_host=h3005413.stratoserver.net ansible_user=dominik
+vps_contabo_l ansible_host=vmd117892.contaboserver.net ansible_user=dominik
 
 [servers]
-vps_contabo_l ansible_host=vmd117892.contaboserver.net ansible_user=dominik
+vps_contabo_s ansible_host=vmd52268.contaboserver.net ansible_user=dominik
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
