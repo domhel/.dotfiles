@@ -52,3 +52,4 @@
         - ledger-live
         - fastlane
         - git-delta
+        - gnuplot
